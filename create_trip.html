@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create Trip - TripPlanner</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/create_trip.css">
+</head>
+
+<body>
+
+<div class="ct-toast" id="ctToast"></div>
+
+<div class="ct-page">
+  <div class="ct-card">
+
+    <div class="ct-header">
+      <h1>Create Your Trip 🌍</h1>
+      <p>Fill in the details below to start a new travel community.</p>
+    </div>
+
+    <div class="ct-login-notice" id="loginNotice">
+      You need to be logged in to create a trip.
+      <a href="home.html?login=1&redirect=create_trip.html">Log in or create an account</a>, then you'll be brought back here.
+    </div>
+
+    <form id="createTripForm" novalidate>
+
+      <div class="ct-form-grid">
+
+        <div class="ct-field ct-full">
+          <label for="tripName">Trip Name<span class="req">*</span></label>
+          <input type="text" id="tripName" name="trip_name" placeholder="e.g., Goa Beach Getaway" maxlength="100" required>
+          <div class="ct-error-text" id="err-tripName"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="destination">Destination<span class="req">*</span></label>
+          <input type="text" id="destination" name="destination" placeholder="e.g., Goa, India" maxlength="100" required>
+          <div class="ct-error-text" id="err-destination"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="tripType">Trip Type<span class="req">*</span></label>
+          <select id="tripType" name="trip_type" required>
+            <option value="">Select trip type</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Leisure">Leisure</option>
+            <option value="Business">Business</option>
+            <option value="Educational">Educational</option>
+            <option value="Family">Family</option>
+            <option value="Other">Other</option>
+          </select>
+          <div class="ct-error-text" id="err-tripType"></div>
+        </div>
+
+        <div class="ct-field ct-full">
+          <label for="description">Trip Description</label>
+          <textarea id="description" name="description" placeholder="Tell people what this trip is about..." maxlength="2000"></textarea>
+        </div>
+
+        <div class="ct-field">
+          <label for="startDate">Start Date<span class="req">*</span></label>
+          <input type="date" id="startDate" name="start_date" required>
+          <div class="ct-error-text" id="err-startDate"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="endDate">End Date<span class="req">*</span></label>
+          <input type="date" id="endDate" name="end_date" required>
+          <div class="ct-error-text" id="err-endDate"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="numberOfDays">No. of Days</label>
+          <input type="text" id="numberOfDays" name="number_of_days" readonly placeholder="Auto-calculated">
+          <div class="ct-hint">Calculated automatically from Start and End Date.</div>
+        </div>
+
+        <div class="ct-field">
+          <label for="maxMembers">Maximum Members<span class="req">*</span></label>
+          <input type="number" id="maxMembers" name="max_members" placeholder="e.g., 10" min="1" step="1" required>
+          <div class="ct-error-text" id="err-maxMembers"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="registrationDeadline">Registration Deadline</label>
+          <input type="date" id="registrationDeadline" name="registration_deadline" placeholder="Optional">
+          <div class="ct-error-text" id="err-registrationDeadline"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="estimatedCost">Estimated Cost</label>
+          <input type="number" id="estimatedCost" name="estimated_cost" placeholder="e.g., 15000" min="0" step="0.01">
+          <div class="ct-error-text" id="err-estimatedCost"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="ageLimit">Age Limit (minimum age)<span class="req">*</span></label>
+          <input type="number" id="ageLimit" name="age_limit" placeholder="e.g., 18" min="0" max="120" step="1" required>
+          <div class="ct-error-text" id="err-ageLimit"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="whoCanJoin">Who Can Join<span class="req">*</span></label>
+          <select id="whoCanJoin" name="who_can_join" required>
+            <option value="">Select who can join</option>
+            <option value="Everyone">Everyone</option>
+            <option value="Women">Women</option>
+            <option value="Men">Men</option>
+          </select>
+          <div class="ct-error-text" id="err-whoCanJoin"></div>
+        </div>
+
+        <div class="ct-field">
+          <label for="createdBy">Created By</label>
+          <input type="text" id="createdBy" readonly placeholder="Loading...">
+          <div class="ct-hint">Automatically set to your logged-in account.</div>
+        </div>
+
+      </div>
+
+      <div class="ct-actions">
+        <button type="submit" class="ct-btn ct-btn-primary" id="submitBtn">Create Trip</button>
+        <a href="home.html" class="ct-btn ct-btn-secondary">🏠 Back to Home</a>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<script src="create_trip.js"></script>
+</body>
+
+</html>

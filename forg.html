@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+</head>
+<body>
+    <h2>Forgot Password</h2>
+
+    <form id="forgotForm">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button type="submit">Send Reset Link</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        document.getElementById("forgotForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const response = await fetch("forgot_password.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: document.getElementById("email").value
+                })
+            });
+
+            const data = await response.json();
+            document.getElementById("message").textContent = data.message;
+        });
+    </script>
+</body>
+</html>

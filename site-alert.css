@@ -1,0 +1,225 @@
+/* =========================================================
+   Site-wide accessible toast/alert component.
+   Replaces plain alert() popups everywhere in the app.
+   ========================================================= */
+
+#siteToastContainer {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.site-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+  max-width: 420px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: #ffffff;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-16px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.site-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-toast-success {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.site-toast-error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.site-toast-warning {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.site-toast-info {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.site-toast-close {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+  padding: 0 0 0 6px;
+}
+
+.site-toast-close:hover {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .site-toast {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* ================= Back to Home button ================= */
+.btn-back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.1);
+  color: #6d28d9;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.btn-back-home:hover {
+  background: rgba(139, 92, 246, 0.18);
+  transform: translateY(-1px);
+}
+
+.btn-back-home .bth-icon {
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .btn-back-home {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ================= Generic confirm modal ================= */
+.site-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 9500;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.site-modal-overlay.active {
+  display: flex;
+}
+
+.site-modal {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+.site-modal h3 {
+  margin: 0 0 10px;
+  color: #0f172a;
+}
+
+.site-modal p {
+  margin: 0 0 18px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.site-modal-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.site-modal-reason {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: #334155;
+}
+
+.site-modal-reason input {
+  accent-color: #7c3aed;
+}
+
+.site-modal-other-text {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  min-height: 60px;
+  box-sizing: border-box;
+}
+
+.site-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.site-modal-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+
+.site-modal-btn-cancel {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.site-modal-btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff;
+}
+
+.site-modal-btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: #ffffff;
+}
+
+.site-modal-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

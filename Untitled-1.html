@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip Planner</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f8fafc;
+    color:#333;
+}
+
+nav{
+    background:#2563eb;
+    color:white;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+}
+
+.hero{
+    height:90vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero-content h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:20px;
+    margin-bottom:30px;
+}
+
+.btn{
+    padding:14px 28px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:16px;
+    margin:10px;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:#f59e0b;
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
+    background:white;
+    color:#2563eb;
+}
+
+.search-section{
+    width:90%;
+    max-width:1100px;
+    margin:-70px auto 50px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.search-section h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+input,select{
+    padding:15px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    outline:none;
+}
+
+.generate-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.section-title{
+    text-align:center;
+    margin:50px 0 30px;
+    font-size:35px;
+    color:#2563eb;
+}
+
+.features{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#2563eb;
+}
+
+.destinations{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.destination{
+    overflow:hidden;
+    border-radius:15px;
+    position:relative;
+}
+
+.destination img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.destination h3{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    color:white;
+    font-size:24px;
+}
+
+.steps{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.step{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+footer{
+    margin-top:60px;
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:768px){
+.hero-content h1{
+    font-size:38px;
+}
+
+.hero-content p{
+    font-size:16px;
+}
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">🌍 Trip Planner</div>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Budget</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Plan Your Perfect Journey ✈️</h1>
+        <p>Discover destinations, manage budgets, coordinate friends and create unforgettable memories.</p>
+
+        <button class="btn btn-primary">Start Planning</button>
+        <button class="btn btn-secondary">Explore Places</button>
+    </div>
+</section>
+
+<section class="search-section">
+    <h2>🔍 Find Your Next Adventure</h2>
+
+    <div class="form-grid">
+        <input type="text" placeholder="Destination">
+
+        <input type="number" placeholder="Number of Days">
+
+        <input type="number" placeholder="Budget">
+
+        <select>
+            <option>Select Mood</option>
+            <option>Adventure</option>
+            <option>Nature</option>
+            <option>Relaxation</option>
+            <option>Food</option>
+            <option>Photography</option>
+            <option>Shopping</option>
+        </select>
+
+        <button class="generate-btn">
+            Generate Trip
+        </button>
+    </div>
+</section>
+
+<h2 class="section-title">✨ Features</h2>
+
+<section class="features">
+
+    <div class="card">
+        <h3>💰 Budget Planner</h3>
+        <p>Get detailed trip cost estimates and spending plans.</p>
+    </div>
+
+    <div class="card">
+        <h3>🤝 Group Trip Manager</h3>
+        <p>Coordinate trips with friends and track confirmations.</p>
+    </div>
+
+    <div class="card">
+        <h3>🎒 Packing Checklist</h3>
+        <p>Smart packing suggestions based on destination and weather.</p>
+    </div>
+
+    <div class="card">
+        <h3>📊 Expense Splitter</h3>
+        <p>Split expenses fairly among your travel group.</p>
+    </div>
+
+    <div class="card">
+        <h3>👨‍👩‍👧 Parent Approval Mode</h3>
+        <p>Share safe travel plans with family members.</p>
+    </div>
+
+    <div class="card">
+        <h3>🗺️ Smart Itinerary</h3>
+        <p>Optimized schedules to maximize your travel experience.</p>
+    </div>
+
+</section>
+
+<h2 class="section-title">🏝 Popular Destinations</h2>
+
+<section class="destinations">
+
+    <div class="destination">
+        <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86">
+        <h3>Goa</h3>
+    </div>
+
+    <div class="destination">
+        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23">
+        <h3>Manali</h3>
+    </div>
+
+    <div class="destination">
+        <img src="https://images.unsplash.com/photo-1599661046827-dacde6976548">
+        <h3>Jaipur</h3>
+    </div>
+
+    <div class="destination">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5">
+        <h3>Munnar</h3>
+    </div>
+
+</section>
+
+<h2 class="section-title">⚡ How It Works</h2>
+
+<section class="steps">
+
+    <div class="step">
+        <h3>1️⃣ Choose Destination</h3>
+        <p>Select your dream location.</p>
+    </div>
+
+    <div class="step">
+        <h3>2️⃣ Set Budget</h3>
+        <p>Enter your budget and trip duration.</p>
+    </div>
+
+    <div class="step">
+        <h3>3️⃣ Get Suggestions</h3>
+        <p>Receive hotels, attractions and travel plans.</p>
+    </div>
+
+    <div class="step">
+        <h3>4️⃣ Enjoy</h3>
+        <p>Pack your bags and start exploring.</p>
+    </div>
+
+</section>
+
+<footer>
+    <h3>🌍 Trip Planner</h3>
+    <p>From Dream Destinations to Real Adventures ✈️</p>
+</footer>
+
+</body>
+</html>

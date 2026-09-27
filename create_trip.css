@@ -1,0 +1,237 @@
+:root {
+  --ct-primary: #8b5cf6;
+  --ct-primary-dark: #7c3aed;
+  --ct-primary-light: #a78bfa;
+  --ct-bg: #f5f3ff;
+  --ct-text: #1e1b4b;
+  --ct-muted: #6b7280;
+  --ct-border: #e5e7eb;
+  --ct-error: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+  min-height: 100vh;
+  padding: 40px 16px;
+  color: var(--ct-text);
+}
+
+.ct-page {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.ct-card {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(76, 29, 149, 0.15);
+  padding: 40px;
+}
+
+.ct-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.ct-header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  color: var(--ct-primary-dark);
+}
+
+.ct-header p {
+  margin: 0;
+  color: var(--ct-muted);
+}
+
+.ct-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+
+.ct-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ct-field.ct-full {
+  grid-column: 1 / -1;
+}
+
+.ct-field label {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ct-text);
+}
+
+.ct-field label .req {
+  color: var(--ct-error);
+  margin-left: 2px;
+}
+
+.ct-field input,
+.ct-field select,
+.ct-field textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--ct-border);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #fafafa;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ct-field input:focus,
+.ct-field select:focus,
+.ct-field textarea:focus {
+  outline: none;
+  border-color: var(--ct-primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  background: #fff;
+}
+
+.ct-field input[readonly] {
+  background: #f3f4f6;
+  color: var(--ct-muted);
+  cursor: not-allowed;
+}
+
+.ct-field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.ct-hint {
+  font-size: 0.8rem;
+  color: var(--ct-muted);
+}
+
+.ct-error-text {
+  font-size: 0.8rem;
+  color: var(--ct-error);
+  min-height: 16px;
+}
+
+.ct-actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ct-btn {
+  flex: 1;
+  min-width: 180px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ct-btn-primary {
+  background: linear-gradient(135deg, var(--ct-primary), var(--ct-primary-dark));
+  color: white;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+.ct-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(124, 58, 237, 0.38);
+}
+
+.ct-btn-secondary {
+  background: #f3f4f6;
+  color: var(--ct-text);
+}
+
+.ct-btn-secondary:hover {
+  background: #e5e7eb;
+  transform: translateY(-2px);
+}
+
+.ct-login-notice {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 0.9rem;
+  text-align: center;
+  display: none;
+}
+
+.ct-login-notice.show {
+  display: block;
+}
+
+.ct-login-notice a {
+  color: #9a3412;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.ct-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  min-width: 280px;
+  max-width: 90vw;
+  padding: 16px 22px;
+  border-radius: 14px;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1000;
+}
+
+.ct-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.ct-toast-success {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.ct-toast-error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+@media (max-width: 640px) {
+  .ct-card {
+    padding: 26px 20px;
+  }
+
+  .ct-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ct-actions {
+    flex-direction: column;
+  }
+
+  .ct-btn {
+    width: 100%;
+  }
+}

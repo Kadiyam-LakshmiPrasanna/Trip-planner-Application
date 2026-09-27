@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TripPlanner - Modern Travel Website</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/site-alert.css" />
+
+  <style>
+
+    /* ================= PROFILE / LOGOUT ================= */
+
+    .user-profile{
+      position:relative;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .profile-caret{
+      font-size:0.75rem;
+      color:#6b7280;
+      transition:0.3s;
+    }
+
+    .profile-menu{
+      display:none;
+      position:absolute;
+      top:calc(100% + 14px);
+      right:0;
+      background:white;
+      border-radius:14px;
+      box-shadow:0 15px 35px rgba(0,0,0,0.15);
+      min-width:160px;
+      padding:8px;
+      z-index:1000;
+    }
+
+    .profile-menu.show{
+      display:block;
+    }
+
+    .logout-btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border:none;
+      border-radius:10px;
+      background:transparent;
+      color:#ef4444;
+      font-size:0.95rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.25s;
+      text-align:left;
+    }
+
+    .logout-btn:hover{
+      background:rgba(239,68,68,0.1);
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .feature-card{
+      background:white;
+      padding:35px 30px;
+      border-radius:22px;
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+
+      box-shadow:0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .feature-card::before{
+      content:'';
+      position:absolute;
+      width:120px;
+      height:120px;
+      background:rgba(139,92,246,0.08);
+      border-radius:50%;
+      top:-40px;
+      right:-40px;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .feature-icon{
+      font-size:2.8rem;
+      margin-bottom:20px;
+    }
+
+    .feature-card h3{
+      margin-bottom:12px;
+    }
+
+    .feature-card p{
+      color:#6b7280;
+      line-height:1.7;
+    }
+
+    /* ================= DESTINATIONS ================= */
+
+    .destinations{
+      background:#f8f5ff;
+    }
+
+    .destination-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .destination-card{
+      position:relative;
+      height:380px;
+      border-radius:24px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:0.5s;
+      box-shadow:0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    .destination-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .destination-card:hover img{
+      transform:scale(1.1);
+    }
+
+    .destination-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:25px;
+      color:white;
+    }
+
+    .destination-overlay h3{
+      font-size:2rem;
+      margin-bottom:8px;
+    }
+
+    .destination-overlay p{
+      color:#f1f1f1;
+    }
+
+    /* ================= HOW IT WORKS ================= */
+
+    .steps{
+      background:linear-gradient(to bottom,#F5F3FF,#EDE9FE);
+    }
+
+    .steps-container{
+      max-width:900px;
+      margin:auto;
+    }
+
+    .step{
+      display:flex;
+      align-items:flex-start;
+      gap:25px;
+      margin-bottom:45px;
+    }
+
+    .step-number{
+      min-width:70px;
+      height:70px;
+      border-radius:20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+      font-size:1.5rem;
+      font-weight:700;
+
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+
+      box-shadow:0 10px 25px rgba(139,92,246,0.35);
+    }
+
+    .step-content h3{
+      margin-bottom:10px;
+    }
+
+    .step-content p{
+      color:#6b7280;
+      line-height:1.8;
+    }
+
+    /* ================= TESTIMONIALS ================= */
+
+    .testimonials{
+      background:white;
+    }
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .testimonial-card{
+      background:white;
+      padding:30px;
+      border-radius:22px;
+      transition:0.4s;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .testimonial-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .stars{
+      color:#fbbf24;
+      margin-bottom:15px;
+      font-size:1.1rem;
+    }
+
+    .testimonial-card p{
+      color:#6b7280;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .user{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .avatar{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+      font-weight:700;
+    }
+
+    /* ================= CTA ================= */
+
+    .cta{
+      text-align:center;
+      color:white;
+
+      background:
+      linear-gradient(135deg,#6D28D9,#8B5CF6,#A78BFA);
+    }
+
+    .cta h2{
+      font-size:2.8rem;
+      margin-bottom:20px;
+    }
+
+    .cta p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+      margin-bottom:35px;
+      color:#ececec;
+    }
+
+    .cta button{
+      padding:16px 35px;
+      border:none;
+      border-radius:14px;
+      cursor:pointer;
+      font-size:1rem;
+      font-weight:600;
+      background:white;
+      color:var(--primary);
+      transition:0.4s;
+    }
+
+    .cta button:hover{
+      transform:translateY(-5px);
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer{
+      background:#140F2D;
+      color:#cbd5e1;
+      padding:30px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:20px;
+    }
+
+    .footer-links a{
+      color:#cbd5e1;
+    }
+
+    /* ================= ANIMATION ================= */
+
+    @keyframes fadeIn{
+
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:900px){
+
+      .hero h1{
+        font-size:2.8rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .step{
+        flex-direction:column;
+      }
+
+      footer{
+        flex-direction:column;
+        text-align:center;
+      }
+    }
+
+    @media(max-width:600px){
+
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+      .section-title h2{
+        font-size:2rem;
+      }
+
+      .destination-card{
+        height:300px;
+      }
+    }
+
+    /* ================= ALL TRIPS ================= */
+
+    .trip-status-note{
+      text-align:center;
+      max-width:520px;
+      margin:0 auto;
+      padding:40px 24px;
+      color:#6b7280;
+      background:white;
+      border-radius:18px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    .trip-status-note button{
+      margin-top:16px;
+      padding:12px 26px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .trip-card .trip-cancelled-badge{
+      display:inline-block;
+      margin-top:6px;
+      padding:4px 12px;
+      border-radius:999px;
+      background:#fee2e2;
+      color:#b91c1c;
+      font-size:0.8rem;
+      font-weight:700;
+    }
+
+    .see-more-wrap{
+      text-align:center;
+      margin-top:35px;
+    }
+
+    .see-more-btn{
+      padding:13px 30px;
+      border:none;
+      border-radius:30px;
+      background:#00897b;
+      color:white;
+      font-weight:bold;
+      font-size:15px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .see-more-btn:hover{
+      background:#004d40;
+    }
+
+    .back-home-wrap{
+      text-align:center;
+      margin-top:35px;
+    }
+
+    .back-home-btn{
+      padding:13px 30px;
+      border:2px solid #00897b;
+      border-radius:30px;
+      background:transparent;
+      color:#00897b;
+      font-weight:bold;
+      font-size:15px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .back-home-btn:hover{
+      background:#00897b;
+      color:white;
+    }
+
+    /* ================= REVIEWS ================= */
+
+    .review-form-card{
+      max-width:640px;
+      margin:0 auto 50px;
+      background:#f8f5ff;
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    .review-form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-bottom:16px;
+    }
+
+    .review-form-grid input{
+      width:100%;
+      box-sizing:border-box;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid #e2e8f0;
+      font-family:inherit;
+    }
+
+    .review-star-picker{
+      display:flex;
+      gap:6px;
+      font-size:1.6rem;
+      color:#d1d5db;
+      margin-bottom:16px;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .review-star-picker span.active{
+      color:#fbbf24;
+    }
+
+    .review-form-card textarea{
+      width:100%;
+      box-sizing:border-box;
+      min-height:90px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid #e2e8f0;
+      font-family:inherit;
+      resize:vertical;
+      margin-bottom:16px;
+    }
+
+    .review-form-card button{
+      padding:12px 28px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .review-form-card button:disabled{
+      opacity:0.6;
+      cursor:not-allowed;
+    }
+
+    .reviews-state{
+      text-align:center;
+      color:#6b7280;
+      padding:20px;
+    }
+
+    @media(max-width:600px){
+      .review-form-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <nav class="navbar">
+
+    <div class="nav-container">
+
+      <div class="logo">✈ TripPlanner</div>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#steps">How It Works</a>
+        <a href="#reviews">Reviews</a>
+        <a href="my-trips.html" id="myTripsLink">My Trips</a>
+        <!-- Login Button -->
+<button
+    class="login-btn"
+    id="loginButton"
+    type="button"
+    onclick="openLoginModal()">
+    Login
+</button>
+
+<!-- User Profile -->
+<div class="user-profile hidden" id="userProfile" onclick="toggleProfileMenu(event)">
+
+    <div class="profile-avatar">
+        <i class="fa-solid fa-user"></i>
+    </div>
+
+    <span id="welcomeUser">
+        Hi! User
+    </span>
+
+    <i class="fa-solid fa-chevron-down profile-caret"></i>
+
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-menu" id="profileMenu">
+        <button class="logout-btn" id="logoutButton" type="button" onclick="logoutUser(event)">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+
+</div>
+      
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- ================= HERO ================= -->
+
+  <div id="homeSections">
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h1>Plan Your Perfect Trip</h1>
+
+      <p>
+        Discover breathtaking destinations, smart itineraries,
+        personalized travel experiences, and unforgettable memories.
+      </p>
+
+      <button class="hero-btn" onclick="startPlanning()">
+        Start Planning →
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ================= TRIP PLANNER FORM ================= -->
+
+  <section class="planner-section">
+    <div class="planner-heading">
+      <h2>AI Powered Trip Planner</h2>
+      <p>Enter your current location, destination, trip days and budget. Our AI will create a beautiful personalized travel plan for you.</p>
+    </div>
+
+    <div class="planner-card">
+      <h3><i class="fa-solid fa-magnifying-glass"></i> Plan Your Journey</h3>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-location-crosshairs"></i> Current Location</label>
+        <input type="text" id="currentLocation" placeholder="e.g., Hyderabad">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-location-dot"></i> Destination</label>
+        <input type="text" id="destination" placeholder="e.g., Goa">
+      </div>
+
+      <div class="planner-row">
+        <div class="form-group">
+          <label><i class="fa-regular fa-calendar"></i> Number of Days</label>
+          <input type="number" id="days" placeholder="e.g., 5">
+        </div>
+
+        <div class="form-group">
+          <label><i class="fa-solid fa-wallet"></i> Budget</label>
+          <div class="budget-box">
+            <input type="number" id="budget" placeholder="e.g., 20000">
+            <div class="currency-buttons">
+              <button class="currency active-currency" id="usdBtn" type="button">USD</button>
+              <button class="currency" id="inrBtn" type="button">INR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="search-btn" onclick="startPlanning()">✨ Generate Trip Plan</button>
+    </div>
+
+   
+
+    <div id="trip-output"></div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+
+  <section class="features" id="features">
+
+    <div class="section-title">
+      <h2>Why Choose Us</h2>
+      <p>Everything you need for a seamless travel experience</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Smart Destinations</h3>
+        <p>
+          Get destination recommendations based on your interests and preferences.
+        </p>
+      </div>
+      <div class="feature-card">
+
+        <div class="feature-icon">💰</div>
+
+        <h3>Budget Planning</h3>
+
+        <p>
+          Organize your travel expenses and optimize your budget efficiently.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">🏨</div>
+
+        <h3>Best Hotels</h3>
+
+        <p>
+          Find premium hotels and comfortable stays with trusted ratings.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">🗺</div>
+
+        <h3>Interactive Itinerary</h3>
+
+        <p>
+          Create a detailed trip schedule with maps and attractions.
+        </p>
+      </div>
+    </div>
+  </section>
+    <!-- ================= BUDGET FORM ================= -->
+
+  <section class="budget-form-section" id="budget-form">
+
+    <div class="budget-form-card">
+
+      <h3>Tell us your travel budget</h3>
+
+      <p>Share your budget details and we’ll help you plan a trip that fits your needs.</p>
+
+      <form class="budget-form">
+
+        <div class="budget-form-grid">
+          <div class="budget-form-group">
+            <label for="suggestLocation">Your Current Location</label>
+            <input id="suggestLocation" type="text" placeholder="e.g., Hyderabad">
+          </div>
+          <div class="budget-form-group">
+            <label for="suggestBudget">Your Budget</label>
+            <input id="suggestBudget" type="number" placeholder="e.g. 25000">
+          </div>
+          <div class="budget-form-group">
+            <label for="travelers">Travelers</label>
+            <select id="travelers">
+              <option>Select No of Travelers</option>
+              <option>1 Traveler</option>
+              <option>2 Travelers</option>
+              <option>3 Travelers</option>
+              <option>4+ Travelers</option>
+            </select>
+          </div>
+
+          <div class="budget-form-group">
+            <label for="trip-style">Trip Style</label>
+            <select id="trip-style">
+              <option>Select Trip Style</option>
+              <option>Adventurous</option>
+              <option>Devotional</option>
+              <option>Beach</option>
+              <option>Mountain</option>
+              <option>Historical</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="budget-form-actions">
+          <button type="button" onclick="findDestinationsForBudget()">Get Budget Plan</button>
+        </div>
+
+      </form>
+
+      <div id="budgetSuggestions" class="budget-suggestions"></div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+
+  <section class="steps" id="steps">
+
+    <div class="section-title">
+
+      <h2>How It Works</h2>
+
+      <p>Plan your perfect trip in six simple steps</p>
+
+    </div>
+
+    <div class="steps-container">
+
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h3>📍 Choose Your Destination</h3>
+          <p>Tell us where you want to go and when you'd like to travel.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h3>✨ Generate Your AI Trip Plan</h3>
+          <p>Our AI builds a personalized itinerary, budget and weather outlook instantly.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h3>💾 Save Your Trip</h3>
+          <p>Keep your generated plan in My Trips so you can revisit it anytime.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <h3>👥 Join the Travel Community</h3>
+          <p>Find and join trips created by other travellers heading the same way.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">05</div>
+        <div class="step-content">
+          <h3>🌍 Explore & Share</h3>
+          <p>Chat with your travel community and coordinate the journey together.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">06</div>
+        <div class="step-content">
+          <h3>⭐ Share Your Experience</h3>
+          <p>Leave a review so future travellers know what to expect.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+<!-- Community Trips Section (upcoming & ongoing only) -->
+
+<section class="travel-community" id="all-trips">
+
+    <div class="community-heading">
+
+        <h1>🌍 Upcoming &amp; Ongoing Community Trips</h1>
+
+        <p>
+            Browse upcoming and ongoing trips created by our community.
+        </p>
+
+    </div>
+
+
+    <!-- Search and Filters -->
+
+    <div class="community-controls">
+
+
+        <input 
+        type="text" 
+        id="searchTrip"
+        placeholder="Search destination..."
+        onkeyup="searchTrips()">
+
+
+
+        <button onclick="filterTrips('All')">
+            All
+        </button>
+
+
+        <button onclick="filterTrips('Women')">
+            👩 Women Only
+        </button>
+        <button onclick="filterTrips('Men')">
+            👨 Men Only
+        </button>
+        <button onclick="filterTrips('Private')">
+            🔒 Private
+        </button>
+    </div>
+    <!-- Create Trip Button -->
+    <div class="create-trip">
+
+        <a href="create_trip.html">
+            + Create Your Trip
+        </a>
+
+    </div>
+    <!-- Trip List (first 3 upcoming/ongoing trips) -->
+<div class="trip-list" id="tripList"></div>
+
+    <!-- See More (only shown when there are more than 3 eligible trips) -->
+    <div class="see-more-wrap hidden" id="seeMoreWrap">
+        <button type="button" class="see-more-btn" onclick="showAllTripsView()">See More</button>
+    </div>
+
+</section>
+
+  <!-- ================= DESTINATIONS ================= -->
+
+<section class="destinations" id="destinations">
+
+  <div class="section-title">
+
+    <h2>Explore Famous Places In India</h2>
+
+    <p>
+      Discover the beauty, culture, heritage, and adventures across India
+    </p>
+
+  </div>
+
+  <div class="destination-grid">
+
+    <!-- TAJ MAHAL -->
+
+    <div class="destination-card">
+
+      <img 
+      src="https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1974&auto=format&fit=crop" 
+      alt="Taj Mahal">
+
+      <div class="destination-overlay">
+
+        <h3>Agra</h3>
+
+        <p>Home of the iconic Taj Mahal</p>
+
+      </div>
+
+    </div>
+
+    <!-- JAIPUR -->
+
+    <div class="destination-card">
+
+      <img 
+      src="https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=1974&auto=format&fit=crop" 
+      alt="Jaipur">
+
+      <div class="destination-overlay">
+
+        <h3>Jaipur</h3>
+
+        <p>The royal Pink City of India</p>
+
+      </div>
+
+    </div>
+
+    <!-- KERALA -->
+
+    <div class="destination-card">
+
+      <img 
+      src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1974&auto=format&fit=crop" 
+      alt="Kerala">
+
+      <div class="destination-overlay">
+
+        <h3>Kerala</h3>
+
+        <p>Experience serene backwaters and nature</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+
+  <section class="testimonials" id="reviews">
+
+    <div class="section-title">
+
+      <h2>What Travelers Say</h2>
+
+      <p>Thousands of happy travelers trust TripPlanner</p>
+
+    </div>
+
+    <div class="review-form-card">
+      <h3>⭐ Share Your Experience</h3>
+      <p style="color:#6b7280;margin-bottom:16px;">We'd love to hear about your trip.</p>
+
+      <form id="reviewForm" novalidate>
+        <div class="review-form-grid">
+          <input type="text" id="reviewName" placeholder="Your name" maxlength="100" required>
+          <input type="email" id="reviewEmail" placeholder="Your email" maxlength="150" required>
+        </div>
+
+        <div class="review-star-picker" id="reviewStarPicker" role="radiogroup" aria-label="Rating">
+          <span data-value="1">★</span>
+          <span data-value="2">★</span>
+          <span data-value="3">★</span>
+          <span data-value="4">★</span>
+          <span data-value="5">★</span>
+        </div>
+
+        <textarea id="reviewText" placeholder="Tell us about your experience..." maxlength="1000" required></textarea>
+
+        <button type="submit" id="reviewSubmitBtn">Submit Review</button>
+      </form>
+    </div>
+
+    <div class="reviews-state" id="reviewsLoading">Loading reviews...</div>
+    <div class="reviews-state hidden" id="reviewsEmpty">No reviews yet. Be the first to share your experience!</div>
+    <div class="reviews-state hidden" id="reviewsError">⚠️ Couldn't load reviews right now. Please try again later.</div>
+
+    <div class="testimonial-grid" id="testimonialGrid"></div>
+
+  </section>
+
+  <!-- ================= CTA ================= -->
+
+  <section class="cta">
+
+    <h2>Ready To Explore The World?</h2>
+
+    <p>
+      Create your personalized travel itinerary in minutes and enjoy smarter travel planning.
+    </p>
+
+    <button onclick="startPlanning()">
+      Start Planning Now →
+    </button>
+
+  </section>
+
+  </div>
+  <!-- /#homeSections -->
+
+  <!-- ================= ALL UPCOMING & ONGOING TRIPS (full view) ================= -->
+
+  <section class="travel-community hidden" id="all-trips-full">
+
+    <div class="community-heading">
+      <h1>🌍 All Upcoming &amp; Ongoing Trips</h1>
+      <p>Every upcoming and ongoing trip created by our community.</p>
+    </div>
+
+    <div class="trip-list" id="allTripsFullList"></div>
+
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" onclick="showHomeView()">← Back to Home</button>
+    </div>
+
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div>
+      ✈ TripPlanner
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Support</a>
+    </div>
+
+    <div>
+      © 2025 TripPlanner. All rights reserved.
+    </div>
+
+  </footer>
+
+  <div class="login-modal" id="loginModal">
+    <div class="login-modal-content">
+      <button class="modal-close" type="button" onclick="closeLoginModal()">×</button>
+      <div class="auth-toggle">
+        <button type="button" class="active" id="loginTab" onclick="showAuthForm('login')">Login</button>
+        <button type="button" id="registerTab" onclick="showAuthForm('register')">Register</button>
+      </div>
+
+      <div id="loginFormBox">
+        <h3>Welcome Back</h3>
+        <p>Log in to continue planning your trip.</p>
+        <form class="login-form" id="loginForm">
+          <input type="email" id="loginEmail" placeholder="Email address" required>
+          <input type="password" id="loginPassword" placeholder="Password" required>
+          <button type="submit">Login</button>
+          <a href="forgot_password.html">Forgot password?</a>
+          <p class="small-text">New here? Create an account to get started.</p>
+        </form>
+      </div>
+
+      <div id="registerFormBox" class="hidden">
+        <h3>Create Account</h3>
+        <p>Sign up and start planning your next adventure.</p>
+        <form class="login-form" id="registerForm">
+          <input type="text" id="registerName" placeholder="Full name" required>
+          <input type="email" id="registerEmail" placeholder="Email address" required>
+          <input type="password" id="registerPassword" placeholder="Password (min. 6 characters)" minlength="6" required>
+          <input type="password" id="registerPasswordConfirm" placeholder="Confirm password" minlength="6" required>
+          <input type="number" id="registerAge" placeholder="Age" min="1" max="120" required>
+          <select id="registerGender" required>
+            <option value="">Select gender</option>
+            <option value="Women">Woman</option>
+            <option value="Men">Man</option>
+            <option value="Other">Other</option>
+          </select>
+          <button type="submit">Register</button>
+          <p class="small-text">Already have an account? Login instead.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ================= JAVAS CRIPT ================= -->
+
+  <script src="site-alert.js"></script>
+
+  <script>
+
+    function startPlanning(){
+      if (typeof window.generateTripPlan === "function") {
+        window.generateTripPlan();
+      } else if (typeof window.runTripPlanFromHome === "function") {
+        window.runTripPlanFromHome();
+      } else {
+        showToast("⚠️ Trip planner is not available right now.", "warning");
+      }
+    }
+
+    function openLoginModal(){
+      document.getElementById('loginModal').classList.add('active');
+    }
+
+    function closeLoginModal(){
+      document.getElementById('loginModal').classList.remove('active');
+      showAuthForm('login');
+    }
+
+    function showAuthForm(type){
+      const loginBox = document.getElementById('loginFormBox');
+      const registerBox = document.getElementById('registerFormBox');
+      const loginTab = document.getElementById('loginTab');
+      const registerTab = document.getElementById('registerTab');
+
+      if(type === 'register'){
+        loginBox.classList.add('hidden');
+        registerBox.classList.remove('hidden');
+        loginTab.classList.remove('active');
+        registerTab.classList.add('active');
+      } else {
+        loginBox.classList.remove('hidden');
+        registerBox.classList.add('hidden');
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+      }
+    }
+
+    document.addEventListener('click', function(event){
+      const modal = document.getElementById('loginModal');
+      if(event.target === modal){
+        closeLoginModal();
+      }
+    });
+
+    window.addEventListener("scroll", function(){
+      const navbar = document.querySelector(".navbar");
+      if(window.scrollY > 50){
+        navbar.style.boxShadow = "0 6px 20px rgba(0,0,0,0.15)";
+      }
+      else{
+        navbar.style.boxShadow = "0 2px 15px rgba(0,0,0,0.08)";
+      }
+    });
+
+
+    //javascript register form
+    document.getElementById("registerForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const name = document.getElementById("registerName").value.trim();
+    const email = document.getElementById("registerEmail").value.trim();
+    const password = document.getElementById("registerPassword").value;
+    const passwordConfirm = document.getElementById("registerPasswordConfirm").value;
+    const age = document.getElementById("registerAge").value;
+    const gender = document.getElementById("registerGender").value;
+
+    if (password !== passwordConfirm) {
+        showToast("❌ Passwords do not match.", "error");
+        return;
+    }
+
+    try {
+
+        const response = await fetch("register.php", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                name,
+                email,
+                password,
+                age,
+                gender
+            })
+
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+            showToast("✅ " + result.message, "success");
+            e.target.reset();
+            closeLoginModal();
+        } else {
+            showToast("❌ " + result.message, "error");
+        }
+
+    } catch (err) {
+        console.error("Register request failed:", err);
+        showToast("❌ Something went wrong while registering. Please check the server/console and try again.", "error");
+    }
+
+});
+
+
+//JAVASCRIPT USER PROFILE 
+function updateUserProfile(username){
+
+    document.getElementById("loginButton").classList.add("hidden");
+
+    document.getElementById("userProfile").classList.remove("hidden");
+
+    document.getElementById("welcomeUser").textContent =
+        "Hi! " + username;
+
+    localStorage.setItem("tripplannerUser", username);
+
+}
+
+
+// javascript login
+document.getElementById("loginForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+
+        const response = await fetch("login.php", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                email,
+                password
+            })
+
+        });
+
+        const result = await response.json();
+
+       if(result.status === "success"){
+
+    showToast("✅ " + result.message, "success");
+
+    e.target.reset();
+
+    closeLoginModal();
+
+    updateUserProfile(result.name);
+
+    loadTrips();
+
+    const params = new URLSearchParams(window.location.search);
+    const redirectTo = params.get("redirect");
+    if (redirectTo) {
+        window.location.href = redirectTo;
+    }
+
+} else {
+    showToast("❌ " + result.message, "error");
+}
+    } catch (err) {
+        console.error("Login request failed:", err);
+        showToast("❌ Something went wrong while logging in. Please check the server/console and try again.", "error");
+    }
+
+});
+
+
+
+
+
+//
+// Session reconciliation: localStorage only remembers who was last
+// logged in on this browser, it is not proof of an active session
+// (the PHP session can expire, the cookie can be cleared, etc). So on
+// load we paint optimistically from localStorage for a fast first
+// frame, then confirm against whoami.php (the real source of truth)
+// and correct the UI if the server disagrees.
+window.addEventListener("DOMContentLoaded", async function(){
+
+    const savedUser = localStorage.getItem("tripplannerUser");
+
+    if(savedUser){
+        updateUserProfile(savedUser);
+    }
+
+    let actuallyLoggedIn = false;
+
+    try {
+        const response = await fetch("whoami.php");
+        const data = await response.json();
+
+        if (data.loggedIn) {
+            actuallyLoggedIn = true;
+            // Server is the source of truth for the display name too,
+            // in case it changed since localStorage was last written.
+            updateUserProfile(data.name);
+        } else if (savedUser) {
+            // localStorage said logged in, but there's no active session.
+            // Revert to the logged-out UI instead of leaving a stale
+            // "Hi! <name>" state that can't actually use protected features.
+            localStorage.removeItem("tripplannerUser");
+            document.getElementById("userProfile").classList.add("hidden");
+            document.getElementById("loginButton").classList.remove("hidden");
+        }
+    } catch (err) {
+        console.error("Failed to verify session:", err);
+        // Network/server issue: leave whatever localStorage already painted
+        // rather than forcing the user out, since we can't confirm either way.
+        actuallyLoggedIn = !!savedUser;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("login") === "1" && !actuallyLoggedIn) {
+        openLoginModal();
+    }
+
+});
+
+
+
+
+
+// logout 
+
+function toggleProfileMenu(event){
+
+    if(event) event.stopPropagation();
+
+    const menu = document.getElementById("profileMenu");
+
+    menu.classList.toggle("show");
+
+}
+
+// closing the profile menu when clicking outside
+document.addEventListener("click", function(e){
+
+    const profile = document.getElementById("userProfile");
+    const menu = document.getElementById("profileMenu");
+
+    if(profile && menu && !profile.contains(e.target)){
+
+        menu.classList.remove("show");
+
+    }
+
+});
+
+//logout user functionality
+async function logoutUser(event){
+
+    if(event) event.stopPropagation();
+
+    try {
+        await fetch("logout.php");
+    } catch(err){
+        console.error("Logout request failed:", err);
+    }
+
+    localStorage.removeItem("tripplannerUser");
+
+    document.getElementById("userProfile").classList.add("hidden");
+
+    document.getElementById("loginButton").classList.remove("hidden");
+
+    document.getElementById("profileMenu").classList.remove("show");
+
+    showToast("✅ Logged out successfully.", "success");
+
+    loadTrips();
+
+}
+
+function tripCardHTML(trip) {
+    let privacyClass = "";
+    const privacyLabel = trip.privacy || "Everyone";
+
+    if (privacyLabel.includes("Women")) {
+        privacyClass = "women";
+    } else if (privacyLabel.includes("Men")) {
+        privacyClass = "men";
+    } else if (privacyLabel.includes("Private")) {
+        privacyClass = "private";
+    } else {
+        privacyClass = "everyone";
+    }
+
+    const isCancelled = trip.status === "Cancelled";
+
+    return `
+        <div class="trip-card">
+            <img src="images/default-trip.jpg" alt="Trip">
+
+            <h2>${trip.trip_name}</h2>
+
+            <p>📍 ${trip.destination}</p>
+
+            <p>📅 ${trip.travel_date || trip.start_date || "N/A"}</p>
+
+            <p>👥 Members: ${trip.member_count ?? 1}/${trip.max_members}</p>
+
+            <span class="trip-type ${privacyClass}">
+                ${trip.privacy}
+            </span>
+
+            ${isCancelled ? '<div class="trip-cancelled-badge">🚫 Cancelled</div>' : ''}
+
+            <a href="view-community.php?id=${trip.id}">
+                <button type="button">View Community</button>
+            </a>
+
+        </div>
+    `;
+}
+
+const HOME_TRIPS_PREVIEW_COUNT = 3;
+let eligibleCommunityTrips = [];
+
+// A trip counts as "ended" once its effective end date has passed.
+// Mirrors the same COALESCE(end_date, start_date, travel_date) logic
+// already used server-side for the mine_ongoing scope, so upcoming
+// and currently-running (ongoing) trips are always kept.
+function isTripEndedByDate(trip) {
+    const rawDate = trip.end_date || trip.start_date || trip.travel_date;
+    if (!rawDate) return false; // no date on record -> treat as not ended
+
+    const tripDate = new Date(rawDate);
+    if (isNaN(tripDate.getTime())) return false;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    tripDate.setHours(0, 0, 0, 0);
+
+    return tripDate.getTime() < today.getTime();
+}
+
+function renderHomeTripsPreview() {
+    const tripList = document.getElementById("tripList");
+    const seeMoreWrap = document.getElementById("seeMoreWrap");
+
+    if (eligibleCommunityTrips.length === 0) {
+        tripList.innerHTML = '<p class="trip-status-note">No upcoming or ongoing trips yet. Be the first to create one!</p>';
+        seeMoreWrap.classList.add("hidden");
+        return;
+    }
+
+    const preview = eligibleCommunityTrips.slice(0, HOME_TRIPS_PREVIEW_COUNT);
+    tripList.innerHTML = preview.map(tripCardHTML).join("");
+
+    if (eligibleCommunityTrips.length > HOME_TRIPS_PREVIEW_COUNT) {
+        seeMoreWrap.classList.remove("hidden");
+    } else {
+        seeMoreWrap.classList.add("hidden");
+    }
+}
+
+async function loadTrips() {
+    const tripList = document.getElementById("tripList");
+    tripList.innerHTML = '<p class="trip-status-note">Loading trips...</p>';
+
+    try {
+        const response = await fetch("get_trips.php?scope=all");
+        const trips = await response.json();
+
+        if (!Array.isArray(trips)) {
+            throw new Error("Unexpected response.");
+        }
+
+        // Only upcoming/ongoing trips are shown on the community section;
+        // ended trips are excluded dynamically based on their stored date.
+        eligibleCommunityTrips = trips.filter(trip => !isTripEndedByDate(trip));
+
+        renderHomeTripsPreview();
+    } catch (error) {
+        console.error("Error loading trips:", error);
+        tripList.innerHTML = '<p class="trip-status-note">⚠️ Unable to load trips right now. Please try again later.</p>';
+    }
+}
+
+function showAllTripsView() {
+    const fullList = document.getElementById("allTripsFullList");
+
+    fullList.innerHTML = eligibleCommunityTrips.length
+        ? eligibleCommunityTrips.map(tripCardHTML).join("")
+        : '<p class="trip-status-note">No upcoming or ongoing trips yet. Be the first to create one!</p>';
+
+    document.getElementById("homeSections").classList.add("hidden");
+    document.getElementById("all-trips-full").classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function showHomeView() {
+    document.getElementById("all-trips-full").classList.add("hidden");
+    document.getElementById("homeSections").classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadTrips();
+    loadReviews();
+});
+
+/* ================= REVIEWS ================= */
+
+let selectedReviewRating = 0;
+
+(function setupStarPicker() {
+    const picker = document.getElementById("reviewStarPicker");
+    if (!picker) return;
+
+    const stars = Array.from(picker.querySelectorAll("span"));
+
+    function paint(value) {
+        stars.forEach(star => {
+            star.classList.toggle("active", Number(star.dataset.value) <= value);
+        });
+    }
+
+    stars.forEach(star => {
+        star.addEventListener("click", () => {
+            selectedReviewRating = Number(star.dataset.value);
+            paint(selectedReviewRating);
+        });
+        star.addEventListener("mouseenter", () => paint(Number(star.dataset.value)));
+        star.addEventListener("mouseleave", () => paint(selectedReviewRating));
+    });
+})();
+
+function renderReviewCard(review) {
+    const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+    const initials = review.name
+        .split(" ")
+        .map(part => part.charAt(0).toUpperCase())
+        .slice(0, 2)
+        .join("");
+
+    return `
+        <div class="testimonial-card">
+            <div class="stars">${stars}</div>
+            <p>${escapeHtml(review.review_text)}</p>
+            <div class="user">
+                <div class="avatar">${escapeHtml(initials)}</div>
+                <div>
+                    <h4>${escapeHtml(review.name)}</h4>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+async function loadReviews() {
+    const loading = document.getElementById("reviewsLoading");
+    const empty = document.getElementById("reviewsEmpty");
+    const errorEl = document.getElementById("reviewsError");
+    const grid = document.getElementById("testimonialGrid");
+
+    loading.classList.remove("hidden");
+    empty.classList.add("hidden");
+    errorEl.classList.add("hidden");
+    grid.innerHTML = "";
+
+    try {
+        const response = await fetch("reviews.php");
+        const result = await response.json();
+
+        loading.classList.add("hidden");
+
+        if (result.status !== "success" || !Array.isArray(result.reviews)) {
+            throw new Error(result.message || "Failed to load reviews.");
+        }
+
+        if (result.reviews.length === 0) {
+            empty.classList.remove("hidden");
+            return;
+        }
+
+        grid.innerHTML = result.reviews.map(renderReviewCard).join("");
+    } catch (error) {
+        console.error("Error loading reviews:", error);
+        loading.classList.add("hidden");
+        errorEl.classList.remove("hidden");
+    }
+}
+
+document.getElementById("reviewForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("reviewName").value.trim();
+    const email = document.getElementById("reviewEmail").value.trim();
+    const text = document.getElementById("reviewText").value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name) {
+        showToast("Please enter your name.", "warning");
+        return;
+    }
+    if (!emailPattern.test(email)) {
+        showToast("Please enter a valid email address.", "warning");
+        return;
+    }
+    if (!selectedReviewRating) {
+        showToast("⚠️ Please select a star rating.", "warning");
+        return;
+    }
+    if (!text) {
+        showToast("Please write a short review.", "warning");
+        return;
+    }
+
+    const submitBtn = document.getElementById("reviewSubmitBtn");
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch("reviews.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name,
+                email,
+                rating: selectedReviewRating,
+                review_text: text
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+            showToast("✅ Thanks for sharing your experience!", "success");
+            e.target.reset();
+            selectedReviewRating = 0;
+            document.querySelectorAll("#reviewStarPicker span").forEach(s => s.classList.remove("active"));
+            loadReviews();
+        } else {
+            showToast("❌ " + (result.message || "Could not submit your review."), "error");
+        }
+    } catch (error) {
+        console.error("Error submitting review:", error);
+        showToast("❌ Something went wrong while submitting your review.", "error");
+    } finally {
+        submitBtn.disabled = false;
+    }
+});
+</script>
+
+
+
+  <script src="community.js"></script>
+  <script src="service_request.js"></script>
+  <script src="budget-suggestions.js"></script>
+
+</body>
+</html>

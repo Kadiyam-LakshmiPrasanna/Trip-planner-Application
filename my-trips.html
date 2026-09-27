@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Trips - TripPlanner</title>
+
+  <link rel="stylesheet" href="my-trips.css">
+  <link rel="stylesheet" href="css/site-alert.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+
+    <div class="logo">
+      <i class="fa-solid fa-plane"></i>
+      TripPlanner
+    </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="home.html" class="btn-back-home"><span class="bth-icon">🏠</span> Back to Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="mytrips-section">
+
+    <div class="heading">
+      <h1>My Trips</h1>
+      <p>All the travel plans you've generated, saved to your account.</p>
+    </div>
+
+    <!-- Loading state -->
+    <div class="loading" id="loadingState">
+      Loading your trips...
+    </div>
+
+    <!-- Not logged in state -->
+    <div class="error-box hidden" id="authRequired">
+      <span id="authRequiredText">Please log in to view your trips.</span>
+      <a id="authRequiredLink" href="home.html?login=1&redirect=my-trips.html">Log in</a>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state hidden" id="emptyState">
+      <i class="fa-regular fa-compass"></i>
+      <h3>No trips found.</h3>
+      <p>Create your first travel plan.</p>
+      <button onclick="window.location.href='service_request.html'">
+        ✨ Generate Trip Plan
+      </button>
+    </div>
+
+    <!-- Trip cards grid -->
+    <div class="trips-grid hidden" id="tripsGrid"></div>
+
+  </section>
+
+  <!-- TRIP DETAILS MODAL -->
+  <div class="trip-modal" id="tripModal">
+    <div class="trip-modal-content">
+      <button class="modal-close" type="button" onclick="closeTripModal()">×</button>
+      <div id="tripModalBody">
+        <!-- Filled dynamically by my-trips.js -->
+      </div>
+    </div>
+  </div>
+
+  <script src="site-alert.js"></script>
+  <script src="my-trips.js"></script>
+
+</body>
+
+</html>

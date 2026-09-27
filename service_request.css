@@ -1,0 +1,1123 @@
+/* =========================================
+GOOGLE FONT
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/* =========================================
+GLOBAL
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+
+  min-height:100vh;
+
+  background:
+  linear-gradient(
+    135deg,
+    #1e1b4b 0%,
+    #3b0764 25%,
+    #581c87 55%,
+    #6d28d9 100%
+  );
+
+  background-attachment:fixed;
+
+  color:white;
+}
+
+
+/* =========================================
+NAVBAR
+========================================= */
+
+.navbar{
+
+  width:100%;
+  height:75px;
+
+  padding:0 40px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:
+  rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:
+  1px solid rgba(255,255,255,0.08);
+
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+.logo{
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-size:26px;
+  font-weight:700;
+
+  color:white;
+}
+
+.logo i{
+
+  color:#d946ef;
+}
+
+.nav-links{
+
+  display:flex;
+  gap:28px;
+
+  list-style:none;
+}
+
+.nav-links a{
+
+  text-decoration:none;
+
+  color:#ede9fe;
+
+  font-size:15px;
+
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+
+  color:white;
+}
+
+.plan-btn{
+
+  padding:12px 22px;
+
+  border:none;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-weight:600;
+
+  color:white;
+
+  background:
+  linear-gradient(
+    45deg,
+    #d946ef,
+    #8b5cf6
+  );
+
+  box-shadow:
+  0 4px 15px rgba(168,85,247,0.4);
+
+  transition:0.3s;
+}
+
+.plan-btn:hover{
+
+  transform:translateY(-2px);
+}
+
+
+/* =========================================
+MAIN SECTION
+========================================= */
+
+.search-section{
+
+  padding:60px 20px;
+}
+
+
+/* =========================================
+HEADING
+========================================= */
+
+.heading{
+
+  text-align:center;
+
+  margin-bottom:45px;
+}
+
+.heading h1{
+
+  font-size:58px;
+
+  margin-bottom:15px;
+
+  color:white;
+
+  text-shadow:
+  0 4px 20px rgba(0,0,0,0.35);
+}
+
+.heading p{
+
+  width:65%;
+
+  margin:auto;
+
+  line-height:1.8;
+
+  color:#ede9fe;
+
+  font-size:17px;
+}
+
+
+/* =========================================
+SEARCH CARD
+========================================= */
+
+.search-card{
+
+  width:60%;
+
+  margin:auto;
+
+  padding:35px;
+
+  border-radius:28px;
+
+  background:
+  rgba(255,255,255,0.10);
+
+  backdrop-filter:blur(18px);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+  0 8px 30px rgba(0,0,0,0.25);
+}
+
+.search-card h2{
+
+  margin-bottom:28px;
+
+  color:white;
+
+  font-size:30px;
+}
+
+.search-card h2 i{
+
+  color:#d946ef;
+}
+
+
+/* =========================================
+FORM
+========================================= */
+
+.form-group{
+
+  margin-bottom:22px;
+}
+
+.form-group label{
+
+  display:block;
+
+  margin-bottom:10px;
+
+  color:#f5d0fe;
+
+  font-weight:500;
+}
+
+.form-group label i{
+
+  color:#e879f9;
+}
+
+.form-group input{
+
+  width:100%;
+
+  padding:15px;
+
+  border-radius:14px;
+
+  border:
+  1px solid rgba(255,255,255,0.12);
+
+  background:
+  rgba(255,255,255,0.08);
+
+  color:white;
+
+  outline:none;
+
+  font-size:15px;
+}
+
+.form-group input::placeholder{
+
+  color:#ddd6fe;
+}
+
+
+/* =========================================
+ROW
+========================================= */
+
+.row{
+
+  display:flex;
+
+  gap:20px;
+}
+
+.row .form-group{
+
+  flex:1;
+}
+
+
+/* =========================================
+BUDGET
+========================================= */
+
+.budget-box{
+
+  display:flex;
+
+  gap:10px;
+}
+
+.currency-buttons{
+
+  display:flex;
+
+  gap:6px;
+}
+
+.currency{
+
+  padding:12px 18px;
+
+  border:none;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  color:white;
+
+  background:
+  rgba(255,255,255,0.08);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  transition:0.3s;
+}
+
+.active-currency{
+
+  background:
+  linear-gradient(
+    45deg,
+    #d946ef,
+    #8b5cf6
+  );
+
+  font-weight:700;
+}
+
+
+/* =========================================
+BUTTON
+========================================= */
+
+.search-btn{
+
+  width:100%;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:16px;
+
+  cursor:pointer;
+
+  font-size:18px;
+  font-weight:600;
+
+  color:white;
+
+  margin-top:15px;
+
+  background:
+  linear-gradient(
+    45deg,
+    #d946ef,
+    #8b5cf6
+  );
+
+  box-shadow:
+  0 5px 20px rgba(192,132,252,0.4);
+
+  transition:0.3s;
+}
+
+.search-btn:hover{
+
+  transform:translateY(-3px);
+
+  background:
+  linear-gradient(
+    45deg,
+    #f472b6,
+    #9333ea
+  );
+}
+
+
+/* =========================================
+NAVIGATION
+========================================= */
+
+.trip-navigation{
+
+  width:90%;
+
+  margin:35px auto;
+
+  display:none;
+
+  justify-content:center;
+
+  gap:16px;
+
+  flex-wrap:wrap;
+}
+
+.trip-navigation button{
+
+  padding:12px 22px;
+
+  border:none;
+
+  border-radius:40px;
+
+  background:
+  rgba(255,255,255,0.10);
+
+  backdrop-filter:blur(12px);
+
+  color:white;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  transition:0.3s;
+}
+
+.trip-navigation button:hover{
+
+  transform:translateY(-3px);
+
+  background:
+  linear-gradient(
+    45deg,
+    #d946ef,
+    #8b5cf6
+  );
+}
+
+
+/* =========================================
+OUTPUT
+========================================= */
+
+#trip-output{
+
+  margin-top:45px;
+}
+
+
+/* =========================================
+DASHBOARD
+========================================= */
+
+.dashboard{
+
+  width:92%;
+
+  margin:auto;
+
+  padding-bottom:60px;
+}
+
+
+/* =========================================
+HERO
+========================================= */
+
+.hero-section{
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  margin-bottom:35px;
+
+  box-shadow:
+  0 10px 35px rgba(0,0,0,0.35);
+}
+
+.hero-image{
+
+  width:100%;
+
+  height:480px;
+
+  object-fit:cover;
+}
+
+.hero-image-placeholder{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:14px;
+
+  background:linear-gradient(135deg,#3b0764,#701a75);
+
+  color:#f3e8ff;
+
+  font-size:16px;
+
+  text-align:center;
+
+  padding:20px;
+}
+
+.hero-image-placeholder i{
+
+  font-size:42px;
+
+  opacity:0.7;
+}
+
+.hero-overlay{
+
+  position:absolute;
+
+  bottom:0;
+
+  width:100%;
+
+  padding:45px;
+
+  background:
+  linear-gradient(
+    transparent,
+    rgba(0,0,0,0.85)
+  );
+}
+
+.hero-overlay h1{
+
+  font-size:58px;
+
+  margin-bottom:12px;
+}
+
+.hero-overlay p{
+
+  font-size:20px;
+
+  color:#f3e8ff;
+}
+
+
+/* =========================================
+TOP CARDS
+========================================= */
+
+.top-cards{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:22px;
+
+  margin-bottom:35px;
+}
+
+.info-card{
+
+  background:
+  rgba(255,255,255,0.10);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:24px;
+
+  padding:24px;
+
+  text-align:center;
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+  0 6px 20px rgba(0,0,0,0.2);
+
+  transition:0.3s;
+}
+
+.info-card:hover{
+
+  transform:translateY(-5px);
+}
+
+.info-card h3{
+
+  color:#f5d0fe;
+
+  margin-bottom:12px;
+
+  font-size:20px;
+}
+
+.info-card p{
+
+  color:white;
+
+  font-size:18px;
+
+  font-weight:600;
+}
+
+
+/* =========================================
+MAIN CONTENT
+========================================= */
+
+.main-content{
+
+  display:grid;
+
+  grid-template-columns:2.2fr 1fr;
+
+  gap:28px;
+}
+
+
+/* =========================================
+LEFT CONTENT
+========================================= */
+
+.content-card{
+
+  background:
+  rgba(255,255,255,0.10);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:28px;
+
+  padding:35px;
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+  0 8px 25px rgba(0,0,0,0.25);
+}
+
+
+/* =========================================
+SECTIONS
+========================================= */
+
+section{
+
+  margin-bottom:60px;
+
+  padding-bottom:30px;
+
+  border-bottom:
+  1px solid rgba(255,255,255,0.08);
+}
+
+section h2{
+
+  font-size:34px;
+
+  margin-bottom:22px;
+
+  color:white;
+
+  border-left:
+  6px solid #f0abfc;
+
+  padding-left:16px;
+}
+
+
+/* =========================================
+TRIP RESULT
+========================================= */
+
+.trip-result{
+
+  line-height:1.9;
+
+  color:#f9fafb;
+
+  font-size:17px;
+}
+
+.trip-result h3{
+
+  margin-top:28px;
+
+  margin-bottom:12px;
+
+  color:#f0abfc;
+
+  font-size:24px;
+}
+
+.trip-result strong{
+
+  display:block;
+
+  margin-top:18px;
+
+  color:white;
+
+  font-size:20px;
+}
+
+
+/* =========================================
+AI ITINERARY (formatResponse output)
+========================================= */
+
+.trip-result .day-card{
+
+  margin-top:26px;
+
+  padding:20px;
+
+  border-radius:18px;
+
+  background:
+  rgba(255,255,255,0.06);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+}
+
+.trip-result .day-header{
+
+  font-size:20px;
+
+  font-weight:600;
+
+  color:#f0abfc;
+
+  margin-bottom:10px;
+}
+
+.trip-result .travel-heading{
+
+  margin-top:28px;
+
+  margin-bottom:12px;
+
+  color:#f0abfc;
+
+  font-size:24px;
+}
+
+.trip-result .place-row{
+
+  padding:6px 0;
+
+  color:#f9fafb;
+}
+
+.trip-result .place-description{
+
+  margin-top:6px;
+
+  margin-bottom:10px;
+
+  color:#e9d5ff;
+
+  line-height:1.7;
+}
+
+
+/* =========================================
+MAP
+========================================= */
+
+.map-frame{
+
+  width:100%;
+
+  height:420px;
+
+  border:none;
+
+  border-radius:24px;
+
+  margin-top:20px;
+
+  border:
+  2px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+  0 6px 20px rgba(0,0,0,0.25);
+}
+
+
+/* =========================================
+WEATHER
+========================================= */
+
+.weather-box{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(180px,1fr));
+
+  gap:20px;
+}
+
+.weather-box div{
+
+  background:
+  rgba(255,255,255,0.10);
+
+  padding:24px;
+
+  border-radius:22px;
+
+  text-align:center;
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+}
+
+.weather-box h3{
+
+  margin-bottom:10px;
+
+  color:#f5d0fe;
+}
+
+.weather-location{
+
+  color:#d8b4fe;
+
+  font-size:14px;
+
+  margin-bottom:16px;
+}
+
+.weather-temp{
+
+  font-weight:600;
+
+  color:#fff;
+
+  margin-top:4px;
+}
+
+.weather-rain{
+
+  font-size:13px;
+
+  color:#e9d5ff;
+
+  margin-top:2px;
+}
+
+
+/* =========================================
+GALLERY
+========================================= */
+
+.gallery{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:18px;
+
+  margin-top:25px;
+}
+
+.gallery img{
+
+  width:100%;
+
+  height:220px;
+
+  object-fit:cover;
+
+  border-radius:22px;
+
+  transition:0.4s;
+
+  box-shadow:
+  0 6px 20px rgba(0,0,0,0.25);
+}
+
+.gallery img:hover{
+
+  transform:scale(1.04);
+}
+
+
+/* =========================================
+CHART
+========================================= */
+
+.chart-container{
+
+  width:100%;
+
+  max-width:520px;
+
+  margin:40px auto;
+}
+
+
+/* =========================================
+RIGHT PANEL
+========================================= */
+
+.right-panel{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:22px;
+}
+
+.side-card{
+
+  background:
+  rgba(255,255,255,0.10);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:24px;
+
+  padding:26px;
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+  0 6px 20px rgba(0,0,0,0.25);
+
+  transition:0.3s;
+}
+
+.side-card:hover{
+
+  transform:translateY(-4px);
+}
+
+.side-card h3{
+
+  margin-bottom:14px;
+
+  color:#f5d0fe;
+
+  font-size:22px;
+}
+
+.side-card p{
+
+  line-height:1.8;
+
+  color:#f9fafb;
+}
+
+
+/* =========================================
+LOADING
+========================================= */
+
+.loading{
+
+  width:fit-content;
+
+  margin:50px auto;
+
+  padding:20px 35px;
+
+  border-radius:20px;
+
+  background:
+  rgba(255,255,255,0.10);
+
+  backdrop-filter:blur(14px);
+
+  color:white;
+
+  font-size:20px;
+
+  font-weight:600;
+}
+
+
+/* =========================================
+ERROR
+========================================= */
+
+.error-box{
+
+  width:fit-content;
+
+  margin:40px auto;
+
+  padding:18px 30px;
+
+  border-radius:18px;
+
+  background:
+  rgba(255,0,0,0.18);
+
+  color:white;
+
+  font-weight:600;
+}
+
+
+/* =========================================
+SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar{
+
+  width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+
+  background:#a855f7;
+
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+
+  background:#2e1065;
+}
+
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media(max-width:1000px){
+
+  .main-content{
+
+    grid-template-columns:1fr;
+  }
+
+  .search-card{
+
+    width:90%;
+  }
+
+  .heading p{
+
+    width:90%;
+  }
+}
+
+@media(max-width:768px){
+
+  .nav-links{
+
+    display:none;
+  }
+
+  .heading h1{
+
+    font-size:38px;
+  }
+
+  .row{
+
+    flex-direction:column;
+  }
+
+  .hero-image{
+
+    height:320px;
+  }
+
+  .hero-overlay{
+
+    padding:25px;
+  }
+
+  .hero-overlay h1{
+
+    font-size:36px;
+  }
+
+  section h2{
+
+    font-size:28px;
+  }
+
+  .content-card{
+
+    padding:22px;
+  }
+}
